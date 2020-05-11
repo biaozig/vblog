@@ -1,9 +1,9 @@
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 const sqlConfig = require('./config')
 
 
 // 创建orm 模型
-const sequelize = new Sequelize(sqlConfig.database, sqlConfig.username, sqlConfig.password, {
+const db = new Sequelize(sqlConfig.database, sqlConfig.username, sqlConfig.password, {
     host: sqlConfig.host,
     dialect: 'mysql', // 数据库名
     pool: {
@@ -13,4 +13,4 @@ const sequelize = new Sequelize(sqlConfig.database, sqlConfig.username, sqlConfi
     }
 });
 
-module.exports = sequelize;
+module.exports = db;

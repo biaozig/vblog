@@ -1,53 +1,40 @@
 import React, { useState } from 'react'
-import { useHistory, Switch, Route, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
-import {
+import { 
     AppstoreOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
     PieChartOutlined,
     DesktopOutlined,
     ContainerOutlined,
     MailOutlined,
 } from '@ant-design/icons'
-
-import Error404 from '../pages/Error/Error404'
-import Routes from '../Routers/routes'
 import './BasicSiderIndex.scss'
-import routes from '../Routers/routes'
+
 
 const { Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
-function BasicSiderIndex(props: any) {
+function BasicSiderIndex (props: any) {
     const [collapsed, setCollapsed] = useState(false);
     const history = useHistory();
 
-    const historyPush = (path: string) => {
+    const historyPush = (path:string) => {
         history.push(path)
     }
 
-    // 获取工作台路由
-    const RouteWorkbench: any = () => {
-        let route = Routes.find((v: any) => {
-            return v.mode === 'workbench';
-        })
-
-        console.log(RouteWorkbench())
-
-        return route ? route.routes : [];
-    }
-
-    console.log(RouteWorkbench())
     return (
         <div className='app-basiclayouts'>
-            <Layout className="layout" style={{ background: props.background }}>
-                <Sider width={200} style={{ height: document.body.clientHeight }}>
+            <Layout className="layout" style={{background:props.background}}>
+                <Sider width={200} style={{height:document.body.clientHeight}}>
                     <Menu
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         mode="inline"
                         theme="dark"
                         inlineCollapsed={collapsed}
-                    >
+                        >
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             Option 1
                         </Menu.Item>
@@ -67,30 +54,17 @@ function BasicSiderIndex(props: any) {
                             <Menu.Item key="9">Option 9</Menu.Item>
                             <Menu.Item key="10">Option 10</Menu.Item>
                             <SubMenu key="sub3" title="Submenu">
-                                <Menu.Item key="11">Option 11</Menu.Item>
-                                <Menu.Item key="12">Option 12</Menu.Item>
+                            <Menu.Item key="11">Option 11</Menu.Item>
+                            <Menu.Item key="12">Option 12</Menu.Item>
                             </SubMenu>
                         </SubMenu>
                     </Menu>
-                    <div onClick={() => setCollapsed(!collapsed)}>
-
+                    <div onClick={()=>setCollapsed(!collapsed)}>
+                        
                     </div>
                 </Sider>
                 <Content style={{ padding: '0 50px' }}>
-                    {/* {props.children} */}
-                    <Switch>
-                        {RouteWorkbench().map((ele: any) => (
-                            <Route
-                                key={ele.path}
-                                path={ele.path}
-                                render={(props) => <ele.component {...props} />}
-                                exact
-                            />
-                        ))}
-
-                        <Redirect from="/workbench" to='/workbench/dashboard' />
-                        <Route path="*" render={() => <Error404 />} />
-                    </Switch>
+                    {props.children}
                 </Content>
                 {/* <Footer style={{ textAlign:'center', background:props.background||'transparent' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
             </Layout>

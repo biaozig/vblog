@@ -7,11 +7,11 @@ import './Login.scss'
 
 
 // 文档编辑器
-function MarkDown () {
+function MarkDown() {
     const history = useHistory();
     // 创建一个空的editorState作为初始值
     // const [editorState, setEditorState] = useState(null);
-    const onFinish = (values:any) => {
+    const onFinish = (values: any) => {
         console.log('Received values of form: ', values);
         history.push('/account/profile')
     };
@@ -20,18 +20,18 @@ function MarkDown () {
         <div className='account-login'>
             <div className='login-box'>
                 <div className='login-title'>
-                    博客园用户登录
+                    系统平台登录
                 </div>
                 <div className='login-avatar'>
                     <Avatar size={64} icon={<UserOutlined />} />
-                    <div className='nickname'>代码改变世界</div>
+                    <div className='nickname'>一条咸鱼精.</div>
                 </div>
                 <Form
                     name="normal_login"
                     className="login-form"
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
-                    >
+                >
                     <Form.Item
                         name="username"
                         rules={[{ required: true, message: '请输入账户名!' }]}

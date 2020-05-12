@@ -1,7 +1,6 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
 
-function Home () {
+function AccountCenter () {
 
     return (
         <div className='account-center'>
@@ -10,4 +9,4 @@ function Home () {
     )
 }
 
-export default Home
+export default AccountCenter

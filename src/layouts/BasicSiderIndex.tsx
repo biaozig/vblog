@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useHistory, Switch, Route, Redirect } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import {
     AppstoreOutlined,
@@ -10,33 +10,31 @@ import {
 } from '@ant-design/icons'
 
 import Error404 from '../pages/Error/Error404'
-import Routes from '../Routers/routes'
-import './BasicSiderIndex.scss'
 import routes from '../Routers/routes'
+import './BasicSiderIndex.scss'
 
 const { Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 function BasicSiderIndex(props: any) {
     const [collapsed, setCollapsed] = useState(false);
-    const history = useHistory();
-
-    const historyPush = (path: string) => {
-        history.push(path)
-    }
 
     // 获取工作台路由
     const RouteWorkbench: any = () => {
-        let route = Routes.find((v: any) => {
-            return v.mode === 'workbench';
+        let route = routes.find((v: any) => {
+            return v.type === 'workbench';
         })
 
-        console.log(RouteWorkbench())
-
+        console.log(route)
         return route ? route.routes : [];
     }
 
-    console.log(RouteWorkbench())
+    useEffect(() => {
+        console.log(RouteWorkbench())
+
+    }, [])
+
+    
     return (
         <div className='app-basiclayouts'>
             <Layout className="layout" style={{ background: props.background }}>
@@ -77,20 +75,20 @@ function BasicSiderIndex(props: any) {
                     </div>
                 </Sider>
                 <Content style={{ padding: '0 50px' }}>
-                    {/* {props.children} */}
+                    {/* {RouteWorkbench()}
                     <Switch>
                         {RouteWorkbench().map((ele: any) => (
                             <Route
                                 key={ele.path}
                                 path={ele.path}
-                                render={(props) => <ele.component {...props} />}
+                                render={(props) => { return <ele.component {...props} />}}
                                 exact
                             />
                         ))}
 
                         <Redirect from="/workbench" to='/workbench/dashboard' />
                         <Route path="*" render={() => <Error404 />} />
-                    </Switch>
+                    </Switch> */}
                 </Content>
                 {/* <Footer style={{ textAlign:'center', background:props.background||'transparent' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
             </Layout>

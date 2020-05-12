@@ -1,15 +1,20 @@
 import { platform } from "./path/platform"
 import { workbench } from "./path/workbench"
 
+import BasicSiderIndex from '../layouts/BasicSiderIndex'
+import BasicIndex from '../layouts/BasicIndex'
 
-const routes = [
+// 导出路由
+export default  [
     {
-        mode: 'platform',
-        routes: platform
+        type: 'platform',
+        path: '/platform',
+        routes: platform,
+        component: BasicIndex
     }, {
-        mode: 'workbench',
-        routes: workbench
+        type: 'workbench',
+        path: '/workbench',
+        routes: workbench,
+        component: BasicSiderIndex
     }
 ];
-
-export default routes;

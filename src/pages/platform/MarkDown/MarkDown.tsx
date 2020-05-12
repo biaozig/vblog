@@ -6,15 +6,9 @@ import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 import './MarkDown.scss'
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 
-// 提交
-function submitContent () {
-
-
-
-}
 
 
 // 文档编辑器
@@ -23,6 +17,9 @@ function MarkDown () {
     const [editorState, setEditorState] = useState(null);
 
     // 提交到发布
+    const submitContent = () => {
+        
+    }
 
     return (
         <div className='app-markdown'>

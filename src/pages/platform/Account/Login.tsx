@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { } from 'react'
 import { useHistory } from "react-router-dom";
-import { Avatar, Form, Space, Input, Button, Checkbox } from 'antd'
+import { Avatar, Form, Input, Button, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import 'braft-editor/dist/index.css'
 import './Login.scss'

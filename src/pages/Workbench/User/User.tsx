@@ -1,9 +1,8 @@
 import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
+// import { useHistory, Link } from 'react-router-dom'
+// import { SketchOutlined, CommentOutlined } from '@ant-design/icons'
 import { Layout, Table } from 'antd'
-import { SketchOutlined, CommentOutlined } from '@ant-design/icons'
 
-import BasicSiderIndex from '../../../layouts/BasicSiderIndex'
 import './User.scss'
 
 const { Content, Header } = Layout;
@@ -71,12 +70,11 @@ const columns = [
   ];
 
 function WorkSpaceUser () {
-    const history = useHistory();
-
     // 跳转
-    const historyPush = (path: string) => {
-        history.push(path)
-    }
+    // const history = useHistory();
+    // const historyPush = (path: string) => {
+    //     history.push(path)
+    // }
 
     const onChange = (pagination:any, filters:any, sorter:any, extra:any) => {
         console.log('params', pagination, filters, sorter, extra);
@@ -84,16 +82,14 @@ function WorkSpaceUser () {
 
     return (
         <div className='app-work-dashboard'>
-            <BasicSiderIndex background='#fff' initTab={['1']}>
-                <Layout className='container'>
-                    <Header>
-                        增删改查
-                    </Header>
-                    <Content>
-                        <Table columns={columns} dataSource={data} onChange={onChange} />
-                    </Content>
-                </Layout>
-            </BasicSiderIndex>
+          <Layout className='container'>
+              <Header>
+                  增删改查
+              </Header>
+              <Content>
+                  <Table columns={columns} dataSource={data} onChange={onChange} />
+              </Content>
+          </Layout>
         </div>
     )
 }

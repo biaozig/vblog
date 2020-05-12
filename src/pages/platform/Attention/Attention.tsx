@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { Layout, Space } from 'antd'
 import { SketchOutlined, CommentOutlined } from '@ant-design/icons'
-import BasicIndex from '../../layouts/BasicIndex'
+import BasicIndex from '../../../layouts/BasicIndex'
 import './Attention.scss'
 
 const { Content, Sider } = Layout;

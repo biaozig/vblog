@@ -5,15 +5,15 @@ import AuthRouter from './AuthRouter'
 import Home from '../pages/Home/Home'
 // import Found from '../pages/Found/Found'
 import Detail from '../pages/Detail/Detail'
-import Login from '../pages/Account/Login'
-import NotFound from '../pages/NotFound/404'
-import MarkDown from '../pages/MarkDown/MarkDown'
-import AccountCenter from '../pages/Account/Center'
-import AccountProfile from '../pages/Account/Profile'
+import Login from '../pages/platform/Account/Login'
+import NotFound from '../pages/Error/Error404'
+import MarkDown from '../pages/platform/MarkDown/MarkDown'
+import AccountCenter from '../pages/platform/Account/Center'
+import AccountProfile from '../pages/platform/Account/Profile'
 
 // 工作台
-import WorkbenchUser from '../pages/Workbench/User/User'
-import WorkbenchDashboard from '../pages/Workbench/Dashboard/Dashboard'
+import WorkbenchUser from '../pages/workbench/User/User'
+import WorkbenchDashboard from '../pages/workbench/Dashboard/Dashboard'
 
 
 // 配置路由

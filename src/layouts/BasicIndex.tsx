@@ -4,11 +4,11 @@ import { SettingOutlined, QuestionCircleOutlined, BellOutlined, FormOutlined, Lo
 import { Layout, Menu } from 'antd'
 
 // import Error404 from '../pages/Error/Error404'
-import MarkDown from '../pages/platform/MarkDown/MarkDown'
-import AccountForgot from '../pages/platform/Account/Forgot' // 忘记密码
-import AccountCenter from '../pages/platform/Account/Center' // 个人中心
-import AccountProfile from '../pages/platform/Account/Profile' // 个人资料
-import AccountRegister from '../pages/platform/Account/Register' // 注册账号
+// import MarkDown from '../pages/Platform/MarkDown/MarkDown'
+// import AccountForgot from '../pages/Platform/Account/Forgot' // 忘记密码
+// import AccountCenter from '../pages/Platform/Account/Center' // 个人中心
+// import AccountProfile from '../pages/Platform/Account/Profile' // 个人资料
+// import AccountRegister from '../pages/Platform/Account/Register' // 注册账号
 import routers from '../Routers/routes'
 import './BasicIndex.scss'
 
@@ -23,8 +23,8 @@ function BasicIndex(props: any) {
     }
 
     // 获取路由
-    const filterRoutes = (type:string) => {
-        let route = routers.find((v: any) => {return v.type === type});
+    const filterRoutes = (type: string) => {
+        let route = routers.find((v: any) => { return v.type === type });
 
         console.log(route)
         return route ? route.routes : [];
@@ -58,7 +58,7 @@ function BasicIndex(props: any) {
                                 <Menu.Item key="setting:5"><QuestionCircleOutlined />帮助和反馈</Menu.Item>
                                 <Menu.Item key="setting:6"><LogoutOutlined />退出</Menu.Item>
                             </SubMenu>
-                            <Menu.Item onClick={() => historyPush('/markdown')} key="xiewenzhang"><FormOutlined />写文章</Menu.Item>
+                            <Menu.Item onClick={() => historyPush('/platform/markdown')} key="xiewenzhang"><FormOutlined />写文章</Menu.Item>
                         </Menu>
                     </div>
                     {/* 文章栏目 */}
@@ -79,9 +79,9 @@ function BasicIndex(props: any) {
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px', marginTop: 64 }}>
-                    BasicIndex page.
-                    <Switch>
-                        {/* {filterRoutes('platform').map((ele: any) => {
+                    {props.children}
+                    {/* <Switch>
+                        {filterRoutes('platform').map((ele: any) => {
                             console.log(ele)
                             return (
                                 <Route
@@ -91,16 +91,15 @@ function BasicIndex(props: any) {
                                     exact
                                 />
                             )
-                        })} */}
-                        <Route path='/markdown' component={MarkDown} exact/>
-                        <Route path='/account' component={AccountCenter} exact/>
-                        <Route path='/account/forgot' component={AccountForgot} exact/>
-                        <Route path='/account/profile' component={AccountProfile} exact/>
-                        <Route path='/account/register' component={AccountRegister} exact/>
+                        })}
+                        <Route path='/markdown' component={MarkDown} exact />
+                        <Route path='/account' component={AccountCenter} exact />
+                        <Route path='/account/forgot' component={AccountForgot} exact />
+                        <Route path='/account/profile' component={AccountProfile} exact />
+                        <Route path='/account/register' component={AccountRegister} exact />
 
-                        {/* <Redirect to="/error/404" /> */}
-                        
-                    </Switch>
+                        <Redirect to="/error/404" />
+                    </Switch> */}
                 </Content>
                 <Footer style={{ textAlign: 'center', background: props.background || 'transparent' }}>Ant Design ©2018 Created by Ant UED</Footer>
             </Layout>

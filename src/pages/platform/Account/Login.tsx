@@ -13,7 +13,7 @@ function MarkDown() {
     // const [editorState, setEditorState] = useState(null);
     const onFinish = (values: any) => {
         console.log('Received values of form: ', values);
-        history.push('/account/profile')
+        history.push('/platform/account/profile')
     };
 
     return (

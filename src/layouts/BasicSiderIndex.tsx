@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import { Layout, Menu } from 'antd'
+// import { Switch, Route, Redirect } from 'react-router-dom'
+import { Layout, Menu, Button } from 'antd'
 import {
     AppstoreOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
     PieChartOutlined,
     DesktopOutlined,
     ContainerOutlined,
     MailOutlined,
 } from '@ant-design/icons'
 
-import Error404 from '../pages/Error/Error404'
+// import Error404 from '../pages/Error/Error404'
 import routes from '../Routers/routes'
 import './BasicSiderIndex.scss'
 
@@ -25,20 +27,18 @@ function BasicSiderIndex(props: any) {
             return v.type === 'workbench';
         })
 
-        console.log(route)
         return route ? route.routes : [];
     }
 
     useEffect(() => {
         console.log(RouteWorkbench())
-
     }, [])
 
-    
+
     return (
         <div className='app-basiclayouts'>
             <Layout className="layout" style={{ background: props.background }}>
-                <Sider width={200} style={{ height: document.body.clientHeight }}>
+                <Sider width={200} style={{ height: document.body.clientHeight, background: '#001529' }}>
                     <Menu
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
@@ -70,11 +70,14 @@ function BasicSiderIndex(props: any) {
                             </SubMenu>
                         </SubMenu>
                     </Menu>
-                    <div onClick={() => setCollapsed(!collapsed)}>
-
+                    <div>
+                        <Button type="link" onClick={() => setCollapsed(!collapsed)} style={{ marginBottom: 16 }}>
+                            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+                        </Button>
                     </div>
                 </Sider>
                 <Content style={{ padding: '0 50px' }}>
+                    {props.children}
                     {/* {RouteWorkbench()}
                     <Switch>
                         {RouteWorkbench().map((ele: any) => (

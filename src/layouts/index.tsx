@@ -16,11 +16,30 @@ function BasicLayout() {
 
     return (
         <Switch>
-            <Route
+            {Routes.map((route) => (
+                <Route
+                    exact
+                    key={route.path}
+                    path={route.path}
+                    render={() => (
+                        <route.component>
+                            {route.routes.map((ele: any) => (
+                                <Route
+                                    exact
+                                    key={ele.path}
+                                    path={ele.path}
+                                    render={(rest) => { return <ele.component {...rest} /> }}
+                                />
+                            ))}
+                        </route.component>
+                    )}
+                />
+            ))}
+            {/* <Route
                 exact
                 path='/platform'
                 render={(rest) => { return <BasicIndex {...rest} /> }}
-            />
+            /> */}
             {/* <Route
                 exact
                 path='/workbench'

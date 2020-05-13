@@ -1,0 +1,35 @@
+.app-basicsider-layouts{
+    .app-logo{
+        position: relative;
+        padding: 0 24px;
+        background: #001529;
+        transition: all .3s;
+        .logo{
+            display: flex;
+            align-items: center;
+            height: 64px;
+            img{
+                display: inline-block;
+                height: 32px;
+                vertical-align: middle;
+            }
+            h1{
+                display: inline-block;
+                margin: 0 0 0 12px;
+                color: #fff;
+                font-weight: 600;
+                font-size: 20px;
+                vertical-align: middle;
+                animation: fade-in;
+                animation-duration: .3s;
+            }
+        }
+        
+    }
+    .app-header{
+        display: flex;
+        .app-header-right{
+
+        }
+    }
+}

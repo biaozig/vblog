@@ -27,7 +27,7 @@ const ArticleDetail = AsyncLoad({
 })
 
 function BasicIndex(props: any) {
-    
+
 
     // 获取路由
     const filterRoutes = (type: string) => {
@@ -50,8 +50,9 @@ function BasicIndex(props: any) {
                 </Header>
                 <Content style={{ padding: '0 50px', marginTop: 64 }}>
                     <Switch>
-                        <Route path="/" component={Article} exact />
-                        <Route path="/:id/info" component={ArticleDetail} exact />
+                        <Redirect from='/platform' to='/platform/article' exact />
+                        <Route path="/platform/article" component={Article} exact />
+                        <Route path="/platform/article/:id" component={ArticleDetail} exact />
                         <Route path="/account/profile" component={AccountProfile} />
                         {/* <PrivateRoute isAuthenticated={logged} component={CustomHome} /> */}
                     </Switch>

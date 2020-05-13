@@ -7,17 +7,18 @@ const propTypes = {
   component: PropTypes.func.isRequired
 };
 
-function PrivateRoute({ component: Component, isAuthenticated = false, ...rest }:any) {
+function PrivateRoute({ component: Component, isAuthenticated = false, ...rest }: any) {
   return (
     <Route
       {...rest}
+      exact
       render={_props =>
         isAuthenticated ? <Component {..._props} />
           : <Redirect
-              to={{
-                pathname: '/login',
-                state: { from: _props.location }
-              }}
+            to={{
+              pathname: '/login',
+              state: { from: _props.location }
+            }}
           />
       }
     />

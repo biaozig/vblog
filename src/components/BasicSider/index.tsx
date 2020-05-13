@@ -19,7 +19,7 @@ function BasicSider(props: any) {
 
     // 获取工作台路由
     const RouteWorkbench: any = () => {
-        
+
     }
 
     useEffect(() => {
@@ -30,10 +30,10 @@ function BasicSider(props: any) {
     return (
         <div>
             <Menu
+                theme="dark"
+                mode="inline"
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
-                mode="inline"
-                theme="dark"
                 inlineCollapsed={collapsed}
             >
                 <Menu.Item key="1" icon={<PieChartOutlined />}>
@@ -60,11 +60,11 @@ function BasicSider(props: any) {
                     </SubMenu>
                 </SubMenu>
             </Menu>
-            <div>
+            {/* <div>
                 <Button type="link" onClick={() => setCollapsed(!collapsed)} style={{ marginBottom: 16 }}>
                     {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
                 </Button>
-            </div>
+            </div> */}
         </div>
     )
 }

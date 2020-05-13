@@ -5,7 +5,7 @@ import Layout from './Layout'
 
 
 // 配置路由
-function AppRouter(props:any) {
+function AppRouter(props: any) {
 
     return (
         <BrowserRouter>

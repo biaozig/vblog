@@ -2,12 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { SketchOutlined, CommentOutlined } from '@ant-design/icons'
 import { Layout, Space } from 'antd'
-
-import './Home.scss'
+import './List.scss'
 
 const { Content, Sider } = Layout;
 
-function Home() {
+function ArticleList() {
     // 跳转
     // const history = useHistory();
     // const historyPush = (path: string) => {
@@ -15,7 +14,7 @@ function Home() {
     // }
 
     return (
-        <div className='app-home'>
+        <div className='app-article_list'>
             <Layout className='container'>
                 <Content>
                     <div className="app-article-item">
@@ -170,4 +169,4 @@ function Home() {
     )
 }
 
-export default Home
+export default ArticleList

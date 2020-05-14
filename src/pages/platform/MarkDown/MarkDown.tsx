@@ -9,8 +9,6 @@ import './MarkDown.scss'
 const { Content, Footer } = Layout;
 
 
-
-
 // 文档编辑器
 function MarkDown () {
     // 创建一个空的editorState作为初始值

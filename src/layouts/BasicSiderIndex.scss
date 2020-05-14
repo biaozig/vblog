@@ -1,24 +1,28 @@
 .app-basicsider-layouts{
+    .ant-layout-sider{
+        background: #2f4050;
+    }
     .app-logo{
         position: relative;
-        padding: 0 24px;
-        background: #001529;
+        padding: 15px 20px;
+        background-color: #2f4050;
+        background-image: url(../assets/images/header-profile.png);
         transition: all .3s;
         .logo{
             display: flex;
             align-items: center;
-            height: 64px;
+            // height: 64px;
+            white-space: nowrap;
             img{
                 display: inline-block;
                 height: 32px;
                 vertical-align: middle;
             }
-            h1{
+            .text{
                 display: inline-block;
                 margin: 0 0 0 12px;
                 color: #fff;
-                font-weight: 600;
-                font-size: 20px;
+                font-size: 18px;
                 vertical-align: middle;
                 animation: fade-in;
                 animation-duration: .3s;
@@ -28,8 +32,12 @@
     }
     .app-header{
         display: flex;
+        padding: 0 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 2px rgba(47, 64, 80, .1);
+        margin-bottom: 3px;
         .app-header-right{
-
+            
         }
     }
 }

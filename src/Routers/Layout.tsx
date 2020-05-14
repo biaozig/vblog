@@ -5,12 +5,12 @@ import Login from '../pages/Platform/Account/Login'
 
 // import BasicLayout from '../layouts'
 import BasicIndex from '../layouts/BasicIndex'
-import BlockRoute from './BlockRoute'
+// import BlockRoute from './BlockRoute'
 import PrivateRoute from './PrivateRoute'
 import BasicSiderIndex from '../layouts/BasicSiderIndex'
 
 
-function LayoutRoute({ logged }: any) {
+function LayoutRoute({ logged }: any) { 
 
     return (
         <Switch>

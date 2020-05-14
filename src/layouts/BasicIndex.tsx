@@ -10,7 +10,7 @@ import { Layout, Menu } from 'antd'
 // import AccountRegister from '../pages/Platform/Account/Register' // 注册账号
 
 import AccountProfile from '../pages/Platform/Account/Profile'
-import BasicHeader from '../components/BasicHeader'
+import MainHeader from '../components/MainHeader'
 import AsyncLoad from '../Routers/AsyncLoad'
 import routers from '../Routers/routes'
 import './BasicIndex.scss'
@@ -46,7 +46,7 @@ function BasicIndex(props: any) {
         <div className='app-basiclayouts'>
             <Layout className="layout" style={{ background: props.background }}>
                 <Header style={{ position: 'fixed', zIndex: 999, width: '100%', background: '#fff' }}>
-                    <BasicHeader />
+                    <MainHeader />
                 </Header>
                 <Content style={{ padding: '0 50px', marginTop: 64 }}>
                     <Switch>

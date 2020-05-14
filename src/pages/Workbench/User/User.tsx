@@ -1,94 +1,111 @@
-import React from 'react'
-// import { useHistory, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 // import { SketchOutlined, CommentOutlined } from '@ant-design/icons'
-import { Layout, Table } from 'antd'
+import { Table, Modal, Tag, Layout, Space, Button } from 'antd'
+import { ColumnProps } from 'antd/es/table';
 
 import './User.scss'
 
-const { Content, Header } = Layout;
+// 声明
+interface User {
+  id: string | number;
+  key?: number;
+  name: string;
+  age: number;
+  sex: '0' | '1';
+  phone: string;
+}
 
-const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-    },
-    {
-      title: 'Chinese Score',
-      dataIndex: 'chinese',
-      sorter: {
-        compare: (a:any, b:any) => a.chinese - b.chinese,
-        multiple: 3,
-      },
-    },
-    {
-      title: 'Math Score',
-      dataIndex: 'math',
-      sorter: {
-        compare: (a:any, b:any) => a.math - b.math,
-        multiple: 2,
-      },
-    },
-    {
-      title: 'English Score',
-      dataIndex: 'english',
-      sorter: {
-        compare: (a:any, b:any) => a.english - b.english,
-        multiple: 1,
-      },
-    },
-  ];
-  
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      chinese: 98,
-      math: 60,
-      english: 70,
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      chinese: 98,
-      math: 66,
-      english: 89,
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      chinese: 98,
-      math: 90,
-      english: 70,
-    },
-    {
-      key: '4',
-      name: 'Jim Red',
-      chinese: 88,
-      math: 99,
-      english: 89,
-    },
-  ];
+// 数据列
+const columns: ColumnProps<User>[] = [
+  { key: 'id', title: 'ID', dataIndex: 'id' }, 
+  { key: 'name', title: '名称', dataIndex: 'name' }, 
+  { key: 'age', title: '年龄',  dataIndex: 'age' }, 
+  { 
+    key: 'sex', 
+    title: '性别',  
+    dataIndex: 'sex',
+    render: (val?:string) => (val === '1' ? <Tag color='success'>男</Tag> : val === '0' ? <Tag color='warning'>女</Tag> : '-')
+  }, 
+  { key: 'phone', title: '电话', dataIndex: 'phone' }, 
+  {
+    title: '操作',
+    key: 'action',
+    render: (info:any) => (
+      <span>
+        <Link to={`/workbench/user/${info.id}`}>详情</Link>
+        <Button type="link">编辑</Button>
+        <Button type="link" danger>删除</Button>
+      </span>
+    ),
+  },
+];
 
+// 数据
+const data: User[] = [
+  {
+    key: 0,
+    id: 1,
+    name: 'Jack',
+    age: 17,
+    sex: '1',
+    phone: '18516323721'
+  }, {
+    key: 1,
+    id: 2,
+    name: 'Katyly',
+    age: 17,
+    sex: '1',
+    phone: '18516323723'
+  },
+];
+
+// 用户列表
 function WorkSpaceUser () {
-    // 跳转
-    // const history = useHistory();
-    // const historyPush = (path: string) => {
-    //     history.push(path)
-    // }
-
+    const [addVisible, setAddVisible] = useState(false);
+    
     const onChange = (pagination:any, filters:any, sorter:any, extra:any) => {
         console.log('params', pagination, filters, sorter, extra);
+    }
+
+    // 提交表单
+    const handleSubmit = () => {
+      setAddVisible(false)
+    }
+
+    // 取消
+    const handleCancel = () => {
+      setAddVisible(false)
+
+      
     }
 
     return (
         <div className='app-work-dashboard'>
           <Layout className='container'>
-              <Header>
-                  增删改查
-              </Header>
-              <Content>
-                  <Table columns={columns} dataSource={data} onChange={onChange} />
-              </Content>
+              <div style={{background:'transparent',margin: '15px 0',}}>
+                <Space>
+                  <Button type="primary">添加用户</Button>
+                </Space>
+              </div>
+              <Layout.Content>
+                  <Table<User> 
+                    columns={columns} 
+                    dataSource={data} 
+                    onChange={onChange} /> 
+              </Layout.Content>
+
+              <Modal
+                title="Basic Modal"
+                visible={addVisible}
+                onOk={()=>handleSubmit()}
+                onCancel={()=>handleCancel()}
+              >
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+              </Modal>
+
           </Layout>
         </div>
     )

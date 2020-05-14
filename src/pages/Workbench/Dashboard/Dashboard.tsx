@@ -7,7 +7,7 @@ import './Dashboard.scss'
 
 const { Content, Sider } = Layout;
 
-function Dashboard () {
+function WorkbenchDashboard () {
     // 跳转
     // const history = useHistory();
     // const historyPush = (path: string) => {
@@ -40,17 +40,9 @@ function Dashboard () {
                         </div>
                     </div>
                 </Content>
-                <Sider width={350} style={{background:'#fff'}}>
-                    <div className='aside'>
-                        right sidebar
-                        <div className='board'>
-                            <div></div>
-                        </div>
-                    </div>
-                </Sider>
             </Layout>
         </div>
     )
 }
 
-export default Dashboard
+export default WorkbenchDashboard

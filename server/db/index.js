@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
 const sqlConfig = require('./config')
 
-
 // 创建orm 模型
 const db = new Sequelize(sqlConfig.database, sqlConfig.username, sqlConfig.password, {
     host: sqlConfig.host,

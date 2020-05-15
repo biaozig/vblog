@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useHistory, Route, Redirect, Switch } from 'react-router-dom'
-import { Layout, Menu } from 'antd'
+import { Layout } from 'antd'
 
 // import Error404 from '../pages/Error/Error404'
 // import MarkDown from '../pages/Platform/MarkDown/MarkDown'
@@ -12,35 +12,15 @@ import { Layout, Menu } from 'antd'
 import AccountProfile from '../pages/Platform/Account/Profile'
 import MainHeader from '../components/MainHeader'
 import AsyncLoad from '../Routers/AsyncLoad'
-import routers from '../Routers/routes'
+import platformRoutes from '../Routers/path/platform'
 import './BasicIndex.scss'
 
 const { Header, Content, Footer } = Layout;
-const { SubMenu } = Menu;
 
-const Article = AsyncLoad({
-    loader: () => import(/* webpackChunkName: "home" */ '../pages/Article/List')
-})
-
-const ArticleDetail = AsyncLoad({
-    loader: () => import(/* webpackChunkName: "home" */ '../pages/Article/Detail')
-})
 
 function BasicIndex(props: any) {
 
-
-    // 获取路由
-    const filterRoutes = (type: string) => {
-        let route = routers.find((v: any) => { return v.type === type });
-
-        console.log(route)
-        return route ? route.routes : [];
-    }
-
-    useEffect(() => {
-        console.log(filterRoutes('platform'))
-
-    }, [])
+    useEffect(() => { }, [])
 
     return (
         <div className='app-basiclayouts'>
@@ -50,11 +30,15 @@ function BasicIndex(props: any) {
                 </Header>
                 <Content style={{ padding: '0 50px', marginTop: 64 }}>
                     <Switch>
-                        <Redirect from='/platform' to='/platform/article' exact />
-                        <Route path="/platform/article" component={Article} exact />
-                        <Route path="/platform/article/:id" component={ArticleDetail} exact />
-                        <Route path="/account/profile" component={AccountProfile} />
-                        {/* <PrivateRoute isAuthenticated={logged} component={CustomHome} /> */}
+                        <Redirect from='/' to='/article' exact /> 
+                        {platformRoutes.map((route:any) => (
+                            <Route 
+                                exact
+                                key={route.type}
+                                path={route.path} 
+                                component={route.component} 
+                            />
+                        ))}
                     </Switch>
                 </Content>
                 <Footer style={{ textAlign: 'center', background: props.background || 'transparent' }}>Ant Design ©2018 Created by Ant UED</Footer>

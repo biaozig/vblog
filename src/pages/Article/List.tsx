@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { SketchOutlined, CommentOutlined } from '@ant-design/icons'
-import { Layout, Space } from 'antd'
+import { Layout, Space } from 'antd';
+import request from '../../api/request';
 import './List.scss'
 
 const { Content, Sider } = Layout;
@@ -12,6 +13,22 @@ function ArticleList() {
     // const historyPush = (path: string) => {
     //     history.push(path)
     // }
+    const [dataList, setDataList] = useState([]);
+
+    const getRequest = async () => {
+        console.log(111111111111111111111)
+
+        let data:any = await request({ url: '/' });
+
+        console.log(data)
+        setDataList(data)
+    }
+
+    useEffect(() => {
+        console.log(111111111111111111111)
+        getRequest();
+
+    }, [])
 
     return (
         <div className='app-article_list'>

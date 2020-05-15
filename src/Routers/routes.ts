@@ -1,4 +1,4 @@
-import { platform } from "./path/platform"
+import platform from "./path/platform"
 import { workbench } from "./path/workbench"
 
 import BasicIndex from '../layouts/BasicIndex'

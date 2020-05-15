@@ -3,7 +3,8 @@ const { getThemeVariables } = require('antd/dist/theme');
 const { override, fixBabelImports, addWebpackAlias, addLessLoader } = require('customize-cra');
 
 
-module.exports = override(
+module.exports = override(/* config, */ 
+    // ...config,
     // 配置antd
     fixBabelImports('import', {
         libraryName: 'antd',
@@ -12,11 +13,12 @@ module.exports = override(
     }),
     // 设置绝对路径：addWebpackAlias
     addWebpackAlias({        
-        ["@"]: path.resolve(__dirname, "src"),
-        ["mock"]: path.resolve(__dirname, "src/mock"),
-        ["pages"]: path.resolve(__dirname, "src/pages"), 
-        ["layouts"]: path.resolve(__dirname, "src/layouts"),        
-        ["components"]: path.resolve(__dirname, "src/components"),        
+        ["@"]: path.resolve(__dirname, "./src"),
+        ["api"]: path.resolve(__dirname, "./src/api"),
+        ["mock"]: path.resolve(__dirname, "./src/mock"),
+        ["pages"]: path.resolve(__dirname, "./src/pages"), 
+        ["layouts"]: path.resolve(__dirname, "./src/layouts"),        
+        ["components"]: path.resolve(__dirname, "./src/components"),        
     }),
     // 使用less-loader对源码重的less的变量进行重新制定，设置antd自定义主题
     addLessLoader({
@@ -28,5 +30,6 @@ module.exports = override(
             '@font-size-base': '13px', // 主字号
             'compact': true, // 开启紧凑模式
         },
-    })
+    }),
+    
 );

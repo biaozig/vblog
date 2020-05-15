@@ -21,6 +21,7 @@
     "braft-editor": "^2.3.9",
     "customize-cra": "^0.9.1",
     "ehome-react-skeleton": "^1.0.2",
+    "http-proxy-middleware": "^1.0.3",
     "install": "^0.13.0",
     "less-loader": "^6.1.0",
     "lodash": "^4.17.15",

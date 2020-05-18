@@ -22,7 +22,6 @@ export default function request(params:reqType, token?:boolean) {
             baseURL: config.baseURL,
             data: obj2params(params.data, token),
             headers: {
-                sessionToken,
                 'Accept': 'application/json', 
                 'Content-Type': 'application/x-www-form-urlencoded',
             },

@@ -14,76 +14,41 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // 文章列表
 router.get('/list', async function(req, res, next){
-    res.json({
-        data: [
-            {
-                title: '实战：Vue刷新当前页面',
-                desc: '最近些日子项目中突然碰到了一个需求，再完成编辑操作之后需要进行页面刷新，通过实验有如下几种姿势可以解决需求中的问题，下面进行简单总结如下。',
-                image: 'https://upload-images.jianshu.io/upload_images/13331500-5a1f36d61cefe074.png?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
-                zan: '0',
-                like: '0',
-                share: '0',
-                recommend: '0',
-            }, {
-                title: '实战：Vue刷新当前页面',
-                desc: '最近些日子项目中突然碰到了一个需求，再完成编辑操作之后需要进行页面刷新，通过实验有如下几种姿势可以解决需求中的问题，下面进行简单总结如下。',
-                image: 'https://upload-images.jianshu.io/upload_images/13331500-5a1f36d61cefe074.png?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
-                zan: '0',
-                like: '0',
-                share: '0',
-                recommend: '0',
-            }, {
-                title: '实战：Vue刷新当前页面',
-                desc: '最近些日子项目中突然碰到了一个需求，再完成编辑操作之后需要进行页面刷新，通过实验有如下几种姿势可以解决需求中的问题，下面进行简单总结如下。',
-                image: 'https://upload-images.jianshu.io/upload_images/13331500-5a1f36d61cefe074.png?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
-                zan: '0',
-                like: '0',
-                share: '0',
-                recommend: '0',
-            }, {
-                title: '实战：Vue刷新当前页面',
-                desc: '最近些日子项目中突然碰到了一个需求，再完成编辑操作之后需要进行页面刷新，通过实验有如下几种姿势可以解决需求中的问题，下面进行简单总结如下。',
-                image: 'https://upload-images.jianshu.io/upload_images/13331500-5a1f36d61cefe074.png?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
-                zan: '0',
-                like: '0',
-                share: '0',
-                recommend: '0',
-            }, {
-                title: '实战：Vue刷新当前页面',
-                desc: '最近些日子项目中突然碰到了一个需求，再完成编辑操作之后需要进行页面刷新，通过实验有如下几种姿势可以解决需求中的问题，下面进行简单总结如下。',
-                image: 'https://upload-images.jianshu.io/upload_images/13331500-5a1f36d61cefe074.png?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
-                zan: '0',
-                like: '0',
-                share: '0',
-                recommend: '0',
-            }
-        ]
+    let resArticle = await dbArticle.findAll();
+
+    console.log("All articles:", JSON.stringify(resArticle, null, 4));
+
+    res.status(200).json({
+        code: 200,
+        data: resArticle
     })
 })
 
 // 添加文章
 router.post('/create', async function(req, res, next){
-    dbArticle.bulkCreate([
-        {
-            mail:'183..@163.com',
-            name:'张三',
-            password:'123',
-            mobile: '18516323721',
-        },
-        {mail:'183..@163.com',name:'张三',password:'123',authority:'1'}
-    ])
-    // dbArticle.bulkCreate().then((art) => {
-    //     console.log(art)
-    // })
-    // dbArticle.findAll().then((art) => {
-    //     console.log(art)
-    // })
+    
+    dbArticle.create({ 
+        title: req.body['title'],
+        image: req.body['image'],
+        desc:  req.body['desc'],
+        like: 0,
+        share: 0,
+        recommend: 0
+    }).then(jane => {
+        console.log("Jane's auto-generated ID:", jane.id);
 
-    res.json({
-        title: '测试文章标题1',
-        content: '水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水',
-        date: '2020-05-15 15:53:00'
-    }) 
+        res.status(200).json({
+            code: 200,
+            message: '添加成功.'
+        })
+    }).catch(err => {
+        res.json({
+            code: 500,
+            message: JSON.stringify(err)
+        })
+    });
+
+
     // let errText = {};
     // if(!req.params.title){
     //     errText['title'] = 'title 不能为空';
@@ -109,15 +74,6 @@ router.post('/create', async function(req, res, next){
     //     code: 200,
     //     message: '添加成功！'
     // })
-})
-
-router.post('/create', async function(req, res, next){
-
-    res.json({
-        title: '测试文章标题1',
-        content: '水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水',
-        date: '2020-05-15 15:53:00'
-    }) 
 })
 
 module.exports = router;

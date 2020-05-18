@@ -47,7 +47,7 @@ function BasicSider(props: any) {
                         <Menu.Item key="setting:5"><QuestionCircleOutlined />帮助和反馈</Menu.Item>
                         <Menu.Item key="setting:6"><LogoutOutlined />退出</Menu.Item>
                     </SubMenu>
-                    <Menu.Item onClick={() => historyPush('/markdown')} key="xiewenzhang"><FormOutlined />写文章</Menu.Item>
+                    <Menu.Item onClick={() => historyPush('/article/update')} key="xiewenzhang"><FormOutlined />写文章</Menu.Item>
                 </Menu>
             </div>
             {/* 文章栏目 */}

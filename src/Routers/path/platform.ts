@@ -3,6 +3,7 @@ import { asyncComponent } from '../AsyncComponent'; // 异步加载组件
 
 const ArticleList = asyncComponent(() => import('../../pages/Platform/Article/List')); // 文章列表
 const ArticleDetail = asyncComponent(() => import('../../pages/Platform/Article/Detail')); // 文章详情
+const ArticleUpdate = asyncComponent(() => import('../../pages/Platform/Article/Update')); // 文章编辑、添加
 
 
 
@@ -24,8 +25,14 @@ const platformRoutes = [
         icon: '',
         title: '文章详情',
         type: 'ArticleDetail',
-        path: '/article/:id', 
+        path: '/article/:id/info', 
         component: ArticleDetail
+    }, { 
+        icon: '',
+        title: '文章编辑',
+        type: 'ArticleUpdate',
+        path: '/article/update', 
+        component: ArticleUpdate
     }, 
 
 

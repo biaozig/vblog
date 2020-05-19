@@ -17,7 +17,7 @@ function ArticleList() {
     const [dataList, setDataList] = useState([]);
 
     const getRequest = async () => {
-        let data:any = await articleApis.getArticleList({});
+        let data:any = await articleApis.getArticleList();
 
         console.log(data)
         setDataList(data)

@@ -4,14 +4,14 @@ import config from './config';
 
 type reqType = {
     url:string;
-    method?: 'GET' | 'POST';
+    method?: 'GET' | 'POST' | 'get' | 'post';
     data?: object;
 }
 
 // 定义请求api 
 export default function request(params:reqType, token?:boolean) {
     let apiUrl = params.url;
-    let sessionToken = token ? cookie.load('token') : '1111111111';
+    // let sessionToken = token ? cookie.load('token') : '1111111111';
     let method = params.method || 'GET';
 
     console.log(method)
@@ -20,7 +20,7 @@ export default function request(params:reqType, token?:boolean) {
         axios(apiUrl, {
             method,
             baseURL: config.baseURL,
-            data: obj2params(params.data, token),
+            data: (method==='POST'||method==='post')?obj2params(params.data, token):{},
             headers: {
                 'Accept': 'application/json', 
                 'Content-Type': 'application/x-www-form-urlencoded',

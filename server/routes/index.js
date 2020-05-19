@@ -1,9 +1,18 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const app = new express();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
-module.exports = router;
+// 引入路由
+const indexRouter = require('./home'); // 首页
+const loginRouter = require('./login'); // 登录
+const usersRouter = require('./users'); // 用户
+const articleRouter = require('./article'); // 文章
+
+
+app.use('/', indexRouter); 
+app.use('/user', usersRouter);
+app.use('/login', loginRouter);
+app.use('/article', articleRouter);
+
+
+module.exports = app;

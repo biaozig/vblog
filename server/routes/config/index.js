@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const bodyParser = require('body-parser');
 const express = require('express')
 const app = express();
 
@@ -14,6 +15,14 @@ app.all('*', function (req, res, next) {
     if(req.method=="OPTIONS") res.sendStatus(200);/*让options请求快速返回*/
     else  next();
 });
+
+
+
+// 解析 application/json 
+app.use(bodyParser.json());
+// 解析 application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 module.exports = app;

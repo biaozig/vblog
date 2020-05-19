@@ -14,14 +14,43 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // 文章列表
 router.get('/list', async function(req, res, next){
-    let resArticle = await dbArticle.findAll();
+    let pageNo = req.query.pageNo || 1;
+    let pageSize = req.query.pageNo || 20;
 
-    console.log("All articles:", JSON.stringify(resArticle, null, 4));
+    let resArticle = await dbArticle.findAll({
+        limit: pageSize,
+        offset: (pageNo - 1) * pageSize,
+    });
 
     res.status(200).json({
         code: 200,
-        data: resArticle
-    })
+        data: resArticle,
+        message: '文章列表查询成功！'
+    }).catch(err => {
+        res.json({
+            code: 500,
+            message: err
+        })
+    });
+})
+
+// 查询文章详情
+router.get('/info', async function(req, res, next){
+    console.log(req.query.id)
+    dbArticle.findByPk(req.query.id).then(jane => {
+        console.log("Jane's auto-generated ID:", jane.id);
+
+        res.status(200).json({
+            code: 200,
+            message: '查询成功.',
+            data: jane
+        })
+    }).catch(err => {
+        res.json({
+            code: 500,
+            message: '无效的`id`!'
+        })
+    });
 })
 
 // 添加文章
@@ -30,10 +59,11 @@ router.post('/create', async function(req, res, next){
     dbArticle.create({ 
         title: req.body['title'],
         image: req.body['image'],
-        desc:  req.body['desc'],
+        resume:  req.body['resume'],
+        content:  req.body['desc'],
         like: 0,
         share: 0,
-        recommend: 0
+        collect: 0
     }).then(jane => {
         console.log("Jane's auto-generated ID:", jane.id);
 

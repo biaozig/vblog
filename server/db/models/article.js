@@ -7,19 +7,22 @@ const article = sequelize.define('article', {
     title: {
         type: DataTypes.STRING
     },
-    desc: {
+    resume: { // 简述
         type: DataTypes.STRING
     },
-    zan: {
+    image: { // 图片
         type: DataTypes.STRING
     },
-    like: {
+    content: { // 内容
         type: DataTypes.STRING
     },
-    share: {
+    like: { // 喜欢
         type: DataTypes.STRING
     },
-    recommend: {
+    share: { // 分享
+        type: DataTypes.STRING
+    },
+    collect: { // 收藏
         type: DataTypes.STRING
     }
 }, {

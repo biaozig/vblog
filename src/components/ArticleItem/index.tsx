@@ -17,7 +17,7 @@ export default function ArticleItem ({ data }: PropsType) {
                 <div className='title'>
                     <Link to={`/article/${data.id}/info`}>{data.title}</Link>
                 </div>
-                <div className='abstract'>{data.desc}</div>
+                <div className='abstract'>{data.resume}</div>
                 <div className='meta'>
                     <Space>
                         <span><SketchOutlined /> {data.zan}</span>
@@ -27,9 +27,11 @@ export default function ArticleItem ({ data }: PropsType) {
                     </Space>
                 </div>
             </div>
-            <div className='image'>
-                <img src={data.image} alt={data.image}/>
-            </div>
+            {data.image && (
+                <div className='image'>
+                    <img src={data.image} alt={data.image}/>
+                </div>
+            )}
         </div>
     )
 }

@@ -1,19 +1,21 @@
-import React, { } from 'react'
+import React, { } from 'react';
 import { useHistory } from "react-router-dom";
-import { Avatar, Form, Input, Button, Checkbox } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import 'braft-editor/dist/index.css'
-import './Login.scss'
+import { Avatar, Form, Input, Button, Checkbox } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+import { userLoginIn } from '../../../models/login';
+import './Login.scss';
 
 
 // 文档编辑器
 function MarkDown() {
     const history = useHistory();
-    // 创建一个空的editorState作为初始值
-    // const [editorState, setEditorState] = useState(null);
     const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
-        history.push('/platform/account/profile')
+        userLoginIn({username: values['username'], password: values['password']}).then((res:any) => {
+            console.log(res)
+            localStorage.setItem('loginInfo', res.info)
+            history.push('/platform/account/profile')
+        })
     };
 
     return (

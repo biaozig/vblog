@@ -1,19 +1,38 @@
 const express = require('express');
 const router = express.Router();
-const Users = require('../../db/models/users')
+const bcrypt = require('../../utils/bcrypt');
+const Users = require('../../db/models/users');
+const filterJson = require('../../utils/json');
 
 // 登录
 router.post('/in', async function(req, res, next){
-    console.log(req.body, req.body['username'])
-    let user = await Users.findOne({
-            where: {
-                // username: req.body['username'],
-                username: 'admin'
-            }
+    let result = await Users.findOne({'where': { 'username': req.body['username'] }});
+    
+    // 验证是否存在账号
+    if(!result || !result['username']){
+        res.status(200).json({
+            code: 500,
+            message: '账号不存在！'
         })
+        return
+    }
 
-    console.log(user)
-
+    // 验证账户+密码
+    if(req.body['username'] === result['username'] && bcrypt.compare(req.body['password'], result['password'])){
+        res.status(200).json({
+            code: 200,
+            data: {
+                token: '',
+                info: filterJson(result.toJSON(), ['password'])
+            },
+            message: '登录成功！'
+        })
+    }else{
+        res.status(200).json({
+            code: 500,
+            message: '密码错误！'
+        })
+    }
 
 })
 
@@ -26,29 +45,9 @@ router.post('/up', function(req, res, next){
             password: ''
         }
     }).then((res) => {
-        
-        console.log(res)
+         
+        console.log(res['username'], res['password'])
     })
-
 })
-
-// 判断验证用户是否存在+验证密码是否正确
-function checkUserOne(val){
-
-
-}
-
-
-// 密码加密
-function bcryptPsw(val){
-    // 加密
-    const salt = bcrypt.genSaltSync(10);
-    // 生成加密密码
-    const psw = bcrypt.hashSync(val, salt);
-
-    return psw;
-}
-
-
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cookie from 'react-cookies';
+import { message } from 'antd';
 import config from './config';
 
 type reqType = {
@@ -9,37 +10,39 @@ type reqType = {
 }
 
 // 定义请求api 
-export default function request(params:reqType, token?:boolean) {
+export default function request(params:reqType, hasToken?:boolean) {
     let apiUrl = params.url;
-    // let sessionToken = token ? cookie.load('token') : '1111111111';
+    let loginToken = cookie.load('token')||'';
     let method = params.method || 'GET';
-
-    console.log(method)
 
     return new Promise((resolve, reject) => {
         axios(apiUrl, {
             method,
             baseURL: config.baseURL,
-            data: (method==='POST'||method==='post')?obj2params(params.data, token):{},
+            data: (method==='POST'||method==='post')?obj2params(params.data, hasToken):{},
             headers: {
                 'Accept': 'application/json', 
                 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            // proxy: {
-            //     host: 'http://127.0.0.1',
-            //     port: 3000,
-            // }
+            }
         })
         .then((result:any) => {
-            console.log(result)
-            if(result.data.code === 200) return result.data;
+            if(result.status === 200){
+                if(loginToken){ // 更新cookie 有效期7天
+                    let maxAge = new Date().setDate(new Date().getDate()+7);
+                    cookie.save('opstk', loginToken, {path:'/', maxAge})
+                }
+
+                return result.data;
+            };
+            
             reject();
         })
-        .then((res: any) => resolve(res.data))
-        .catch((err) => {
-            console.log(err)
-            reject();
+        .then((res: any) => {
+            console.log(res)
+            if(res.code === 200) return resolve(res.data);
+            message.error(res.message);
         })
+        .catch((err) => reject(err))
     })
 }
 

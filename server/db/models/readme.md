@@ -24,6 +24,11 @@
             freezeTableName:true, // 禁止以复数形式创建表
             
         })
+    4.user表里面没有createdAt字段，默认情况下，Sequelize将添加属性createdAt和updatedAt模型，便于查询数据插入和最新更新时间
+        解决方法有两种：
+        1）在表中添加createdAt和updatedAt字段
+        2）在model文件里加上{ timestamps:false } 的配置
+
 
 
 ### 模型与数据库同步

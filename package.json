@@ -34,6 +34,7 @@
     "react-app-rewired": "^2.1.6",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
+    "react-hooks-redux": "^0.10.4",
     "react-loadable": "^5.5.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",

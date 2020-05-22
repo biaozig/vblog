@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('../../utils/bcrypt');
 const Users = require('../../db/models/users');
 const filterJson = require('../../utils/json');
+// const jwtToken = require('../../utils/token');
+const jwtToken = require('../../utils/jwtToken');
 
 // 登录
 router.post('/in', async function(req, res, next){
@@ -19,10 +21,13 @@ router.post('/in', async function(req, res, next){
 
     // 验证账户+密码
     if(req.body['username'] === result['username'] && bcrypt.compare(req.body['password'], result['password'])){
+        
         res.status(200).json({
             code: 200,
             data: {
-                token: '',
+                token: jwtToken.create({
+                    username: req.body['username'],
+                }),
                 info: filterJson(result.toJSON(), ['password'])
             },
             message: '登录成功！'

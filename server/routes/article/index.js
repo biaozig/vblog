@@ -26,12 +26,7 @@ router.get('/list', async function(req, res, next){
         code: 200,
         data: resArticle,
         message: '文章列表查询成功！'
-    }).catch(err => {
-        res.json({
-            code: 500,
-            message: err
-        })
-    });
+    })
 })
 
 // 查询文章详情

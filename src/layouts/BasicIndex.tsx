@@ -41,7 +41,9 @@ function BasicIndex(props: any) {
                         ))}
                     </Switch>
                 </Content>
-                <Footer style={{ textAlign: 'center', background: props.background || 'transparent' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center', background: props.background || 'transparent' }}>
+                    内容发布平台 ©2020 Created by ZCC AUTH.
+                </Footer>
             </Layout>
         </div>
     )

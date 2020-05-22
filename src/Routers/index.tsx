@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useStore } from 'react'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
 // import Layout from './Layout'
@@ -9,8 +9,11 @@ import Login from '../pages/Platform/Account/Login'
 
 // 配置路由
 function AppRouter({ logged }:{ logged?:boolean }) {
+    const [bgColor, setBgColor] = useStore();
+    useEffect(() => {
 
-
+        console.log(bgColor)
+    })
 
     return (
         <BrowserRouter>

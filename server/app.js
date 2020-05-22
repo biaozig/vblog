@@ -2,14 +2,17 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-const multer = require('multer');
+// const multer = require('multer');
 const app = express();
 
+const vertoken = require('./routes/login/vertoken')
 const config = require('./routes/config'); // 配置项
 const allRouter = require('./routes/index'); // 配置路由
 
 // 配置
 app.use(config);
+// app.use(vertoken); // 验证token
+
 
 // 配置静态资源+模板引擎
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 // 引入路由配置

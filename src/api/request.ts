@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookie from 'react-cookies';
 import { message } from 'antd';
-import config from './config';
+import { apiHost } from '../config';
 
 type reqType = {
     url:string;
@@ -18,9 +18,10 @@ export default function request(params:reqType, hasToken?:boolean) {
     return new Promise((resolve, reject) => {
         axios(apiUrl, {
             method,
-            baseURL: config.baseURL,
+            baseURL: apiHost,
             data: (method==='POST'||method==='post')?obj2params(params.data, hasToken):{},
             headers: {
+                'authorization': loginToken,
                 'Accept': 'application/json', 
                 'Content-Type': 'application/x-www-form-urlencoded',
             }

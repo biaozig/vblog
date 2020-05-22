@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import ReactHookRedux from 'react-hooks-redux';
+import ReactHookRedux from 'react-hooks-redux';
 import AppRouter from './Routers';
-import Provider from './store';
 import './index.css';
 
 import * as serviceWorker from './serviceWorker';
 
 // 通过 ReactHookRedux 获得 Provider 组件和一个 sotre 对象
-// const { Provider, store } = ReactHookRedux({
-//   isDev: true, // 打印日志
-//   initialState: { name: 'dog', age: 0 },
-// });
-  
+const { Provider, store } = ReactHookRedux({
+  isDev: true, // 打印日志
+  initialState: { name: 'dog', age: 0 },
+});
+
 ReactDOM.render(
   // <React.StrictMode>
   <Provider>

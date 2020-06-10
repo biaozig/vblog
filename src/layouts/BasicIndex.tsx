@@ -19,8 +19,14 @@ const { Header, Content, Footer } = Layout;
 
 
 function BasicIndex(props: any) {
+    const history = useHistory();
 
-    useEffect(() => { }, [])
+    console.log(history)
+
+    useEffect(() => {
+        const { initPath } = props;
+        (history.location.pathname === '/') && history.push(initPath);
+    }, [])
 
     return (
         <div className='app-basiclayouts'>
@@ -29,8 +35,8 @@ function BasicIndex(props: any) {
                     <MainHeader />
                 </Header>
                 <Content style={{ padding: '0 50px', marginTop: 64 }}>
-                    <Switch>
-                        <Redirect from='/' to='/article' exact /> 
+                    {props.children}
+                    {/* <Switch>
                         {platformRoutes.map((route:any) => (
                             <Route 
                                 exact
@@ -39,7 +45,9 @@ function BasicIndex(props: any) {
                                 component={route.component} 
                             />
                         ))}
-                    </Switch>
+
+                        <Redirect from='/BasicIndex' to='/article' exact /> 
+                    </Switch> */}
                 </Content>
                 <Footer style={{ textAlign: 'center', background: props.background || 'transparent' }}>
                     内容发布平台 ©2020 Created by ZCC AUTH.

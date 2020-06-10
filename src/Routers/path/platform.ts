@@ -14,18 +14,20 @@ const AccountProfile = asyncComponent(() => import('../../pages/Platform/Account
 const AccountRegister = asyncComponent(() => import('../../pages/Platform/Account/Register')); // 注册账号
 
 // 定义平台路由
-const platformRoutes = [
+export default [
     { 
         icon: '',
         title: '文章列表',
         type: 'ArticleList',
         path: '/article', 
+        auth: false,
         component: ArticleList
     }, { 
         icon: '',
         title: '文章详情',
         type: 'ArticleDetail',
         path: '/article/:id/info', 
+        auth: false,
         component: ArticleDetail
     }, { 
         icon: '',
@@ -68,8 +70,4 @@ const platformRoutes = [
         path: '/account/forgot', 
         component: AccountForgot
     },
-
 ]
-
-
-export default platformRoutes;

@@ -85,65 +85,65 @@ export const routers = [
 
 
 // 定义工作台路由 workbench
-export const workbench = [
+export default [
     { 
         icon: '',
         type: 'workbench',
         title: '工作台',
         path: '/workbench/dashboard', 
         component: WorkbenchDashboard
-    }, {
-        type: 'nr-management',
-        title: '内容管理',
-        children: [
-            { 
-                icon: '',
-                type: 'collect',
-                title: '收藏',
-                path: '/workbench/collect', 
-               component: Collection
-            }, { 
-                icon: '',
-                type: 'attent',
-                title: '关注',
-                path: '/workbench/attent', 
-               component: Attention
-            }, { 
-                icon: '',
-                type: 'like',
-                title: '喜欢',
-                path: '/workbench/like', 
-               component: Like
-            }, { 
-                icon: '',
-                type: 'collect',
-                title: 'public',
-                path: '/workbench/public', 
-               component: Publish
-            },
-        ]
-    }, {
-        type: 'us-management',
-        title: '用户管理',
-        children: [
-            { 
-                icon: '',
-                type: 'user',
-                title: '用户列表',
-                path: '/workbench/user', 
-               component: User
-            }, { 
-                icon: '',
-                type: 'userInfo',
-                title: '关注',
-                path: '/workbench/user/:id', 
-               component: UserInfo
-            }
-        ]
-    }, {
-        type: 'life-art',
-        title: '生活与艺术',
-        children: []
+    // }, {
+    //     type: 'nr-management',
+    //     title: '内容管理',
+    //     children: [
+    //         { 
+    //             icon: '',
+    //             type: 'collect',
+    //             title: '收藏',
+    //             path: '/workbench/collect', 
+    //             component: Collection
+    //         }, { 
+    //             icon: '',
+    //             type: 'attent',
+    //             title: '关注',
+    //             path: '/workbench/attent', 
+    //             component: Attention
+    //         }, { 
+    //             icon: '',
+    //             type: 'like',
+    //             title: '喜欢',
+    //             path: '/workbench/like', 
+    //            component: Like
+    //         }, { 
+    //             icon: '',
+    //             type: 'collect',
+    //             title: 'public',
+    //             path: '/workbench/public', 
+    //             component: Publish
+    //         },
+    //     ]
+    // }, {
+    //     type: 'us-management',
+    //     title: '用户管理',
+    //     children: [
+    //         { 
+    //             icon: '',
+    //             type: 'user',
+    //             title: '用户列表',
+    //             path: '/workbench/user', 
+    //             component: User
+    //         }, { 
+    //             icon: '',
+    //             type: 'userInfo',
+    //             title: '关注',
+    //             path: '/workbench/user/:id', 
+    //             component: UserInfo
+    //         }
+    //     ]
+    // }, {
+    //     type: 'life-art',
+    //     title: '生活与艺术',
+    //     children: []
     }, {
         type: 'nature-science',
         title: '自然与科学',
@@ -151,4 +151,4 @@ export const workbench = [
     }
 ];
 
-export default workbench
+// export default workbench

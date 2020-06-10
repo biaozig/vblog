@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, Redirect, Link } from 'react-router-dom'
+import { Switch, Route, Redirect, Link, useHistory } from 'react-router-dom'
 import { Layout, Button } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 
 import MainSider from '../components/MainSider'
-import { workbench } from '../Routers/path/workbench'
+// import workbench from '../Routers/path/workbench'
 import './BasicSiderIndex.scss'
 
 
 const { Sider, Header, Content } = Layout;
 
 function BasicSiderIndex(props: any) {
+    const history = useHistory();
     const [collapsed, setCollapsed] = useState(false);
 
     useEffect(() => {
+        const { initPath } = props;
 
+        (history.location.pathname !== initPath) && history.push(initPath);
     }, [])
 
     return (
@@ -44,7 +47,8 @@ function BasicSiderIndex(props: any) {
                         </div>
                     </Header>
                     <Content style={{ padding: '0 20px' }}>
-                        <Switch>
+                        {props.children}
+                        {/* <Switch>
                             <Redirect from='/workbench' to='/workbench/dashboard' exact />
                             {workbench.map((route:any) => {
                                 return route.children ? route.children.map((ele:any) => (
@@ -59,7 +63,7 @@ function BasicSiderIndex(props: any) {
                                             component={route.component}
                                         />
                             })}
-                        </Switch>
+                        </Switch> */}
                     </Content>
                     {/* <Footer style={{ textAlign:'center', background:props.background||'transparent' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
                 </Layout>

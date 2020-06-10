@@ -1,5 +1,5 @@
 import platform from "./path/platform"
-import { workbench } from "./path/workbench"
+import workbench from "./path/workbench"
 
 import BasicIndex from '../layouts/BasicIndex'
 import BasicSiderIndex from '../layouts/BasicSiderIndex'

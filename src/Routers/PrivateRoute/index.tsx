@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
 const propTypes = {
+  path: PropTypes.string,
   isAuthenticated: PropTypes.bool,
   component: PropTypes.func.isRequired
 };
 
-function PrivateRoute({ component: Component, isAuthenticated = false, ...rest }: any) {
+function PrivateRoute({ component: Component, isAuthenticated = true, ...rest }: any) {
   return (
     <Route
       {...rest}

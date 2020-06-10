@@ -26,17 +26,18 @@ function BasicSider(props: any) {
 
     // 设置默认路由
     const setdefaultOpen = ():string => {
-        let R = (workbenchRoutes[0] && workbenchRoutes[0].children && workbenchRoutes[0].children.length) ? (workbenchRoutes[0].children[0].path||'')
-                : workbenchRoutes[0] ? (workbenchRoutes[0].path||'') : '';
+        // let R = (workbenchRoutes[0] && workbenchRoutes[0].children && workbenchRoutes[0].children.length) ? (workbenchRoutes[0].children[0].path||'')
+        //         : workbenchRoutes[0] ? (workbenchRoutes[0].path||'') : '';
 
-        return R;
+        // return R;
+        return ''
     }
 
     useEffect(() => {
-        setdefaultOpen();
+        // setdefaultOpen();
 
         console.log(routers)
-        renderRoute('')
+        // renderRoute('')
     }, [])
 
     return (
@@ -65,7 +66,6 @@ function BasicSider(props: any) {
                             key={route.type} 
                             icon={<ClusterOutlined />}
                             onClick={() => history.push(route.path)}>
-                            {console.log(route)}
                             {route.title}
                         </Menu.Item>
                     )

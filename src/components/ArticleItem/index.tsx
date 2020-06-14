@@ -15,7 +15,7 @@ export default function ArticleItem ({ data }: PropsType) {
         <div className="app-article-item">
             <div className='content'>
                 <div className='title'>
-                    <Link to={`/article/${data.id}/info`}>{data.title}</Link>
+                    <Link to={`/platform/#/article/${data.id}/info`}>{data.title}</Link>
                 </div>
                 <div className='abstract'>{data.resume}</div>
                 <div className='meta'>

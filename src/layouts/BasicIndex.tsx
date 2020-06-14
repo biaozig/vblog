@@ -1,26 +1,20 @@
 import React, { useEffect } from 'react'
-import { useHistory, Route, Redirect, Switch } from 'react-router-dom'
+import { Route, HashRouter as Router, Switch } from 'react-router-dom'
 import { Layout } from 'antd'
 
-// import Error404 from '../pages/Error/Error404'
-// import MarkDown from '../pages/Platform/MarkDown/MarkDown'
-// import AccountForgot from '../pages/Platform/Account/Forgot' // 忘记密码
-// import AccountCenter from '../pages/Platform/Account/Center' // 个人中心
-// import AccountProfile from '../pages/Platform/Account/Profile' // 个人资料
-// import AccountRegister from '../pages/Platform/Account/Register' // 注册账号
-
-import AccountProfile from '../pages/Platform/Account/Profile'
 import MainHeader from '../components/MainHeader'
-import AsyncLoad from '../Routers/AsyncLoad'
-import platformRoutes from '../Routers/path/platform'
 import './BasicIndex.scss'
 
+import platform from '../Routers/path/platform'
 const { Header, Content, Footer } = Layout;
 
 
 function BasicIndex(props: any) {
 
-    useEffect(() => { }, [])
+    useEffect(() => { 
+
+        // console.log(props, platform)
+    }, [])
 
     return (
         <div className='app-basiclayouts'>
@@ -29,17 +23,20 @@ function BasicIndex(props: any) {
                     <MainHeader />
                 </Header>
                 <Content style={{ padding: '0 50px', marginTop: 64 }}>
-                    <Switch>
-                        <Redirect from='/' to='/article' exact /> 
-                        {platformRoutes.map((route:any) => (
-                            <Route 
-                                exact
-                                key={route.type}
-                                path={route.path} 
-                                component={route.component} 
-                            />
-                        ))}
-                    </Switch>
+                    <React.Fragment>
+                        <Router>
+                            <Switch>
+                                {platform.children && platform.children.map((route:any) => (
+                                    <Route 
+                                        exact
+                                        key={route.path}
+                                        path={route.path} 
+                                        component={route.component} 
+                                    />
+                                ))}
+                            </Switch>
+                        </Router>
+                    </React.Fragment>
                 </Content>
                 <Footer style={{ textAlign: 'center', background: props.background || 'transparent' }}>
                     内容发布平台 ©2020 Created by ZCC AUTH.

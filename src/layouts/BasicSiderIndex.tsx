@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, Redirect, Link } from 'react-router-dom'
+import { Switch, Route, Link, HashRouter as Router } from 'react-router-dom'
 import { Layout, Button } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 
+import workbench from '../Routers/path/workbench'
 import MainSider from '../components/MainSider'
-import { workbench } from '../Routers/path/workbench'
 import './BasicSiderIndex.scss'
 
 
@@ -14,7 +14,7 @@ function BasicSiderIndex(props: any) {
     const [collapsed, setCollapsed] = useState(false);
 
     useEffect(() => {
-
+        console.log(workbench)
     }, [])
 
     return (
@@ -44,22 +44,31 @@ function BasicSiderIndex(props: any) {
                         </div>
                     </Header>
                     <Content style={{ padding: '0 20px' }}>
-                        <Switch>
-                            <Redirect from='/workbench' to='/workbench/dashboard' exact />
-                            {workbench.map((route:any) => {
-                                return route.children ? route.children.map((ele:any) => (
-                                            <Route 
-                                                key={ele.type} 
-                                                path={ele.path}
-                                                component={ele.component}
-                                            />
-                                        )): <Route 
-                                            key={route.type} 
-                                            path={route.path}
-                                            component={route.component}
-                                        />
-                            })}
-                        </Switch>
+                        <React.Fragment>
+                            <Router>
+                                <Switch>
+                                    {workbench.children.map((route:any) => {
+                                        return (
+                                            route.children ? (
+                                                route.children.map((ele:any) => (
+                                                    <Route 
+                                                        exact
+                                                        key={ele.path}
+                                                        path={ele.path} 
+                                                        component={ele.component} />
+                                                ))
+                                            ) : (
+                                                <Route 
+                                                    exact
+                                                    key={route.path}
+                                                    path={route.path} 
+                                                    component={route.component} />
+                                            )
+                                        )
+                                    })}
+                                </Switch>
+                            </Router>
+                        </React.Fragment>
                     </Content>
                     {/* <Footer style={{ textAlign:'center', background:props.background||'transparent' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
                 </Layout>

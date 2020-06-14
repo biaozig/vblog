@@ -1,8 +1,8 @@
 import { asyncComponent } from '../AsyncComponent'
-
+import BasicSiderIndex from "../../layouts/BasicSiderIndex";
 
 // 配置工作台路由
-const WorkbenchDashboard = asyncComponent(() => import('../../pages/Workbench/Dashboard/Dashboard')); // 工作台
+const Dashboard = asyncComponent(() => import('../../pages/Workbench/Dashboard/Dashboard')); // 工作台
 
 // 内容管理
 const Like = asyncComponent(() => import('../../pages/Workbench/Like/Like')); // 喜欢
@@ -14,6 +14,9 @@ const Attention = asyncComponent(() => import('../../pages/Workbench/Attention/A
 const User = asyncComponent(() => import('../../pages/Workbench/User/User')); // 用户管理
 const UserInfo = asyncComponent(() => import('../../pages/Workbench/User/UserInfo')); // 用户信息
 
+// 404/500
+export const Error404 = asyncComponent(() => import('../../pages/Error/Error404')); // 404
+export const Error500 = asyncComponent(() => import('../../pages/Error/Error500')); // 500
 
 
 // Collection
@@ -81,74 +84,84 @@ export const routers = [
     //         },
     //     ]
     // }
-]
-
-
-// 定义工作台路由 workbench
-export const workbench = [
-    { 
-        icon: '',
-        type: 'workbench',
-        title: '工作台',
-        path: '/workbench/dashboard', 
-        component: WorkbenchDashboard
-    }, {
-        type: 'nr-management',
-        title: '内容管理',
-        children: [
-            { 
-                icon: '',
-                type: 'collect',
-                title: '收藏',
-                path: '/workbench/collect', 
-               component: Collection
-            }, { 
-                icon: '',
-                type: 'attent',
-                title: '关注',
-                path: '/workbench/attent', 
-               component: Attention
-            }, { 
-                icon: '',
-                type: 'like',
-                title: '喜欢',
-                path: '/workbench/like', 
-               component: Like
-            }, { 
-                icon: '',
-                type: 'collect',
-                title: 'public',
-                path: '/workbench/public', 
-               component: Publish
-            },
-        ]
-    }, {
-        type: 'us-management',
-        title: '用户管理',
-        children: [
-            { 
-                icon: '',
-                type: 'user',
-                title: '用户列表',
-                path: '/workbench/user', 
-               component: User
-            }, { 
-                icon: '',
-                type: 'userInfo',
-                title: '关注',
-                path: '/workbench/user/:id', 
-               component: UserInfo
-            }
-        ]
-    }, {
-        type: 'life-art',
-        title: '生活与艺术',
-        children: []
-    }, {
-        type: 'nature-science',
-        title: '自然与科学',
-        children: []
-    }
 ];
 
-export default workbench
+
+// 工作台路由
+export default {
+    title: '工作台',
+    path: '/workbench',
+    layoutComponent: BasicSiderIndex,
+    children: [
+        {
+            path: '/',
+            title: '工作台',
+            component: Dashboard
+        },
+        {
+            type: 'nr-management',
+            title: '内容管理',
+            children: [
+                { 
+                    icon: '',
+                    type: 'collect',
+                    title: '收藏',
+                    path: '/collect', 
+                    component: Collection
+                }, { 
+                    icon: '',
+                    type: 'attent',
+                    title: '关注',
+                    path: '/attent', 
+                    component: Attention
+                }, { 
+                    icon: '',
+                    type: 'like',
+                    title: '喜欢',
+                    path: '/like', 
+                    component: Like
+                }, { 
+                    icon: '',
+                    type: 'collect',
+                    title: 'public',
+                    path: '/public', 
+                    component: Publish
+                },
+            ]
+        }, 
+        {
+            type: 'us-management',
+            title: '用户管理',
+            children: [
+                { 
+                    icon: '',
+                    type: 'user',
+                    title: '用户列表',
+                    path: '/user', 
+                    component: User
+                }, { 
+                    icon: '',
+                    type: 'userInfo',
+                    title: '关注',
+                    path: '/user/:id', 
+                    component: UserInfo
+                }
+            ]
+        }, 
+        {
+            type: 'life-art',
+            title: '生活与艺术',
+            children: []
+        }, 
+        {
+            type: 'nature-science',
+            title: '自然与科学',
+            children: []
+        },
+        { 
+            path: '*', 
+            title: '404',
+            component: Error404 
+        }
+    ]
+}
